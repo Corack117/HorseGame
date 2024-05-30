@@ -1,19 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    android:id="@+id/main_screen"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/app_color_light"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/lyPremium"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:orientation="vertical"
+        android:layout_alignParentTop="true">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/tvPremium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/amaranth_regular"
+            android:background="@color/contrast_data"
+            android:textColor="@color/app_color_light"
+            android:textAlignment="center"
+            android:paddingVertical="8dp"
+            android:text="@string/premium"/>
+
+    </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/svGame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="70dp"
+        android:layout_below="@id/lyPremium">
+
+        <LinearLayout
+            android:id="@+id/lyContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/amaranth_bold"
+                android:textSize="26sp"
+                android:textColor="@color/app_color_regular"
+                android:textAlignment="center"
+                android:layout_marginTop="22dp"
+                android:text="@string/title"/>
+
+            <TextView
+                android:id="@+id/tvLevelTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="6dp"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/amaranth_bold"
+                android:paddingTop="10dp"
+                android:textAlignment="center"
+                android:textColor="@color/app_color_light"
+                android:textSize="18sp"
+                android:background="@drawable/bg_title_top"
+                android:text="@string/level"/>
+
+            <TextView
+                android:id="@+id/tvLevelNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="6dp"
+                android:fontFamily="@font/amaranth_bold"
+                android:paddingBottom="10dp"
+                android:textAlignment="center"
+                android:textColor="@color/app_color_light"
+                android:textSize="18sp"
+                android:background="@drawable/bg_title_bottom"
+                android:text="1"/>
+
+            <LinearLayout
+                android:id="@+id/ly"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="4">
+
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/lyAdsBanner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true">
+
+
+    </LinearLayout>
+
+</RelativeLayout>
