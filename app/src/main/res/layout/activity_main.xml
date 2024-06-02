@@ -221,9 +221,11 @@
                         android:text="@string/options"/>
 
                     <View
+                        android:id="@+id/bonusBar"
                         android:layout_width="match_parent"
                         android:layout_height="4dp"
                         android:translationY="-2dp"
+                        android:layout_gravity="left"
                         android:background="@color/contrast_data"/>
 
                     <LinearLayout
@@ -275,29 +277,70 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:layout_marginTop="20dp">
-
-                    <TableRow android:weightSum="8">
-                        <ImageView
-                            android:id="@+id/iv1"
-                            android:layout_width="0dp"
-                            android:layout_height="43dp"
-                            android:layout_weight="1"
-                            android:importantForAccessibility="no"
-                            android:background="@color/white_cell"
-                            android:padding="4dp"
-                            android:src="@drawable/horse"/>
-
-                    </TableRow>
-
-                </TableLayout>
+                    android:layout_marginTop="20dp"/>
 
                 <LinearLayout
-                    android:id="@+id/lyAds"
+                    android:id="@+id/lyMessage"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="20dp"
+                    android:background="@color/message_bg"
+                    android:orientation="vertical"
+                    android:visibility="visible">
 
+                    <TextView
+                        android:id="@+id/tvIntroLevel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="30dp"
+                        android:fontFamily="@font/amaranth_regular"
+                        android:shadowColor="@color/white"
+                        android:shadowRadius="8"
+                        android:textColor="@color/app_color_dark"
+                        android:textSize="70sp"
+                        android:text="Level: 1"/>
+
+                    <TextView
+                        android:id="@+id/tvIntroLives"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="40dp"
+                        android:fontFamily="@font/amaranth_regular"
+                        android:shadowColor="@color/white"
+                        android:shadowRadius="8"
+                        android:textColor="@color/app_color_dark"
+                        android:textSize="45sp"
+                        android:text="Lives: 1"/>
+
+                    <TextView
+                        android:id="@+id/tvAction"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginHorizontal="24dp"
+                        android:layout_marginTop="30dp"
+                        android:background="@drawable/bg_title_top"
+                        android:fontFamily="@font/amaranth_regular"
+                        android:paddingTop="10dp"
+                        android:textAlignment="center"
+                        android:textColor="@color/app_color_light"
+                        android:textSize="24sp"
+                        android:text="Next Level"
+                        android:onClick="restartGame"/>
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginHorizontal="24dp"
+                        android:layout_marginBottom="40dp"
+                        android:background="@drawable/bg_title_bottom"
+                        android:onClick="launchShareGame"
+                        android:color="@color/white"
+                        app:tint="@color/white"
+                        android:padding="6dp"
+                        android:src="@drawable/ic_share"/>
                 </LinearLayout>
             </RelativeLayout>
 
