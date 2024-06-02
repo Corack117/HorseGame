@@ -25,6 +25,7 @@ import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Environment
 import android.provider.MediaStore
+import android.util.Log
 import android.view.PixelCopy
 import android.view.Window
 import java.text.SimpleDateFormat
@@ -48,8 +49,6 @@ class MainActivity : AppCompatActivity() {
     private var mHandler: Handler? = null
     private var timeInSeconds: Long = 0
 
-    // 0 libre 1 ocupado, bonus 2, Disponibles 9
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -66,6 +65,7 @@ class MainActivity : AppCompatActivity() {
             bonusCell = false
             bonusPoints++
             binding.tvBonusData.text = " + $bonusPoints"
+            view.tag = view.tag.toString().replace("bonus", "")
         }
 
         if (!validatePosition(coordinate_x, coordinate_y)) return
@@ -169,6 +169,7 @@ class MainActivity : AppCompatActivity() {
         board.clear()
         boardPoints = Array(8) { Array(8) { 0 } }
         checkMovement = false
+        bonusCell = false
         tableLayout.removeAllViews()
         val numRows = 8
         val numCols = 8
@@ -302,23 +303,20 @@ class MainActivity : AppCompatActivity() {
         checkMove(x, y, -2, -1, clear)
 
         if (checkMovement) {
-            var actions = 0
             for (row in 0 until boardPoints.size) {
                 for (col in 0 until boardPoints[row].size) {
                     if (boardPoints[row][col] == 0 || boardPoints[row][col] == 3) {
                         if (!clear) {
                             paintOptions(row, col)
-                            actions++
                         } else {
                             clearOptions(row, col)
-                            actions++
                             checkMovement = false
                         }
                     }
                 }
             }
 
-            if (actions == 0) {
+            if (movements == 0) {
                 binding.lyMessage.visibility = LinearLayout.VISIBLE
                 binding.tvIntroLevel.text = "You Win"
                 binding.tvIntroLives.text = "${64 - movements}/64"
@@ -413,7 +411,7 @@ class MainActivity : AppCompatActivity() {
                 binding.lyMessage.visibility = LinearLayout.VISIBLE
                 binding.tvIntroLevel.text = "Game Over"
                 binding.tvIntroLives.text = "${64 - movements}/64"
-                binding.tvAction.text = "Reintentar"
+                binding.tvAction.text = "Try Again"
                 isGameOver = true
                 stopTime()
             } else {
@@ -474,8 +472,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun restartGame(view: View) {
-        if (isGameOver) {
+        if (isGameOver || movements > 0) {
             startNewGame()
+        } else {
+            Log.i("Mensaje", "Game Over Nex Level")
         }
     }
 }
